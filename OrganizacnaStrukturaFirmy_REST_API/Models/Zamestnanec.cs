@@ -12,7 +12,7 @@ namespace OrganizacnaStrukturaFirmy_REST_API.Models
         public string titul { get; set; }
 
         public string meno { get; set; }
-        
+
         public string priezvisko { get; set; }
 
         public string telefon { get; set; }

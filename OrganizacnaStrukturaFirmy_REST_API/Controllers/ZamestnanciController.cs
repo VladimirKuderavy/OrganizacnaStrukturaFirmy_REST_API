@@ -64,6 +64,11 @@ namespace OrganizacnaStrukturaFirmy_REST_API.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] Zamestnanec zamestnanec)
         {
+            if (string.IsNullOrEmpty(zamestnanec.meno)|| string.IsNullOrEmpty(zamestnanec.priezvisko))
+            {
+                return StatusCode(StatusCodes.Status400BadRequest);
+            }
+
             Zamestnanec novyZamestnanec = new Zamestnanec();
 
             novyZamestnanec.id = zamestnanec.id;
@@ -91,6 +96,11 @@ namespace OrganizacnaStrukturaFirmy_REST_API.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(zamestnanec.meno) || string.IsNullOrEmpty(zamestnanec.priezvisko))
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest);
+                }
+
                 var najdenyZamestnanec = dbContext.zamestnanci.FirstOrDefault(z => z.id == zamestnanec.id);
 
                 if (najdenyZamestnanec == null)

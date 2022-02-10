@@ -12,9 +12,9 @@ namespace OrganizacnaStrukturaFirmy_REST_API.Data
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
-            
         }
 
         public DbSet<Zamestnanec> zamestnanci { get; set; }
+        public DbSet<UzolOrganizacnejStruktury> organizacna_struktura { get; set; }
     }
 }

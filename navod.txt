@@ -1,0 +1,78 @@
+-názov databázy: db_organizacna_struktura_firmy
+-tabulka1: zamestnanci
+-tabulka2: organizacna_struktura
+
+-V tabulke organizacna_struktura atribút kod_urovne, predstavuje danú úroveň uzla.
+-kod_urovne = 1 -> Firma
+-kod_urovne = 2 -> Divizia
+-kod_urovne = 3 -> Projekt
+-kod_urovne = 4 -> Oddelenie
+
+-Vytvorenie a naplnenie tabuliek je v scripte "SQLVytvorenieTabuliek.sql".
+
+-Projekt je možné spustiť vo Visual Studiu 2019, treba mať nainštalované tieto packages projektu:
+-Microsoft.EntityFrameworkCore v. 5.0.14
+-Microsoft.EntityFrameworkCore.SqlServer v. 5.0.14
+
+-Pred spustením projektu treba mať správne nastavené ConnectionStrings v súbore "appsettings.json", aby fungovalo spojenie s databázou.
+-Api by malo byť dostupné na porte 44327, port sa dá zmeniť v súbore "launchSettings.json"
+
+
+HTTP Requesty
+
+ZamestnanciController requesty:
+
+Ak chceme získať všetkých zamestnancov:
+
+GET https://localhost:44327/api/zamestnanci/
+
+Ak chceme zíkať jedneho zamestnanca na základe id, napríklad 7:
+
+GET https://localhost:44327/api/zamestnanci/7
+
+Ak chceme vytvoriť zamestnanca:
+
+-do tela pošleme objekt v JSON formáte
+POST https://localhost:44327/api/zamestnanci/
+
+Ak chceme upraviť zamestnanca:
+
+-do tela pošleme objekt v JSON formáte, ktorý obsahuje aj id daného zamestnanca
+PUT https://localhost:44327/api/zamestnanci/
+
+Ak chceme odstrániť zamestnanca na základe id, napríklad 9:
+
+DELETE https://localhost:44327/api/zamestnanci/9
+
+
+OrganizacnaStrukturaController requesty:
+
+Ak chceme zíkať všetky uzly organizačnej štruktúry:
+
+GET https://localhost:44327/api/organizacnastruktura/
+
+Ak chceme zíkať jeden uzol organizačnej štruktúry na základe id, napríklad 5:
+
+GET https://localhost:44327/api/organizacnastruktura/5
+
+Ak chceme získať všetky uzly zadanej úrovne, napríklad uroveň 2 -> divízie:
+
+GET https://localhost:44327/api/organizacnastruktura/GetVsetkyUzlyPodlaUrovne/2
+
+Ak chceme zíkať všetky nižšie uzly zadaného uzla, na základe id, napríklad nižšie uzly uzla s id 3:
+
+GET https://localhost:44327/api/organizacnastruktura/GetVsetkyNizsieUzly/3
+
+Ak chceme vytvoriť nový uzol organizačnej štuktúry:
+
+-do tela pošleme objekt v JSON formáte
+POST https://localhost:44327/api/organizacnastruktura/
+
+Ak chceme upraviť uzol organizačnej štuktúry:
+
+-do tela pošleme objekt v JSON formáte, ktorý obsahuje aj id daného uzla
+PUT https://localhost:44327/api/organizacnastruktura/
+
+Ak chceme odstrániť uzol a s ním aj všetky nižšie uzly, ktoré patria pod daný uzol na základe id, napríklad 4:
+
+DELETE https://localhost:44327/api/organizacnastruktura/4
